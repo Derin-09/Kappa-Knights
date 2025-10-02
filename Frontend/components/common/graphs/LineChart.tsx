@@ -39,9 +39,9 @@ const moodLabelsMap = [
 const LineChart: React.FC<LineChartProps> = ({ labels, datasets, title }) => {
   // build array of { x: label, d0: number, d1: number, ... }
   const data = useMemo(() => {
-    type ChartPoint = { x: string } & Record<string, number | null>;
+    type ChartPoint = { x: string; [key: `d${number}`]: number | null };
     return labels.map((label, i) => {
-      const point: ChartPoint = { x: label };
+      const point: ChartPoint = { x: label } as ChartPoint;
       datasets.forEach((ds, idx) => {
         point[`d${idx}`] = (ds.data[i] ?? null) as number | null;
       });
