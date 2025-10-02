@@ -20,10 +20,10 @@ import { toast } from "sonner";
 import { useUserStore } from "@/state/store";
 
 type prop = {
-  isDone: (boolean: boolean) => void;
+  isDone?: (boolean: boolean) => void;
 };
 
-const Login = ({ isDone }: prop) => {
+const Login = ({ isDone = () => {} }: prop) => {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   const { email, setEmail, password, setPassword } = useUserStore();
@@ -55,7 +55,7 @@ const Login = ({ isDone }: prop) => {
       const err = error as { code?: string };
       if (err.code === "auth/user-not-found") {
         toast.error("No user found with this email.");
-      } else if (error.code === "auth/invalid-email") {
+      } else if (err.code === "auth/invalid-email") {
         toast.error("Invalid email format.");
       } else {
         toast.error("Something went wrong. Please try again.");

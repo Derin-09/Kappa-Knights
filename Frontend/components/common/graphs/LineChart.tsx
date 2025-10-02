@@ -53,11 +53,12 @@ const LineChart: React.FC<LineChartProps> = ({ labels, datasets, title }) => {
   type TooltipPayloadEntry = { value: number | string; dataKey: string; name?: string };
   type CustomTooltipProps = { active?: boolean; payload?: TooltipPayloadEntry[]; label?: string };
   const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active || !payload || payload.length === 0 || !label) return null;
+    const labelValue = typeof label === 'string' || typeof label === 'number' ? label : String(label);
     return (
       <div className="bg-white p-2 rounded shadow">
         <div className="font-semibold text-sm">
-          {new Date(label).toLocaleString()}
+          {new Date(labelValue).toLocaleString()}
         </div>
         {payload.map((p: TooltipPayloadEntry) => {
           const val = p.value;

@@ -209,7 +209,7 @@ function Interest() {
     console.log('After safe clearing, token still exists:', tokenAfterClear ? 'YES' : 'NO');
     console.log('Navigating to skill-level, token preserved');
     
-    router.push("./goals");
+    router.push("./skill-level");
   };
 
   // Merge both arrays for rendering
