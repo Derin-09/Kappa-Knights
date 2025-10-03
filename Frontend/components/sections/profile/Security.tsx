@@ -17,7 +17,7 @@ const Security = () => {
   const handleDisable = async() => {
     const token = localStorage.getItem('token')
     try {
-      await fetch(`${CORE_BASE}/api/user/disable-me`, {
+      await fetch(`/api/core/user/disable-me`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const Security = () => {
     const token = localStorage.getItem('token')
     try {
       
-      await fetch(`${CORE_BASE}/api/user/me`, {
+      await fetch(`/api/core/user/me`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

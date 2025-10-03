@@ -37,7 +37,7 @@ const PersonalInfo = () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://34.228.198.154/api/user/me", {
+      const res = await fetch(`http://${CORE_BASE}/api/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) return;
@@ -93,7 +93,7 @@ const PersonalInfo = () => {
         if (iso) payload.date_of_birth = iso
         if (profilePic) payload.profile_picture_url = profilePic
 
-      const res = await fetch(`${CORE_BASE}/api/user/me`, {
+      const res = await fetch(`https://${CORE_BASE}/api/user/me`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -114,7 +114,7 @@ const PersonalInfo = () => {
 
         // Re-fetch authoritative profile from backend to ensure email truly changed
         try {
-          const verify = await fetch(`${CORE_BASE}/api/user/me`, {
+          const verify = await fetch(`https://${CORE_BASE}/api/user/me`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -146,57 +146,9 @@ const PersonalInfo = () => {
     }
     setIsEditing((v) => !v);
   };
-  // localStorage.setItem('gender', gender)
-  // localStorage.setItem('dayob', dob.day)
-  // localStorage.setItem('monthob', dob.month)
-  // localStorage.setItem('yearob', dob.year)
-
-  const handleLogout = async() => {
-      const token = localStorage.getItem("token");
-      try {
-        await fetch(`${CORE_BASE}/api/user/logout`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-        localStorage.clear()
-        router.push('/')
-      } catch (err){
-        console.log(err)
-      }
-    }
 
   return (
     <main className="md:border rounded-2xl md:p-7 md:mt-8 select-none w-full">
-      {/* log out modal */}
-      {isClicked && (
-        <section className="fixed inset-0 z-50 flex justify-center items-center bg-black/60">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-lg">
-            <div className="flex w-full justify-end">
-              <button onClick={() => setIsClicked(false)} className="p-1 hover:cursor-pointer">
-                <Image src={Back} alt="Exit" width={10} height={10} />
-              </button>
-            </div>
-            <section className="flex flex-col justify-center items-center text-center pt-6">
-              <Image src={LogOut} alt="Log Out" width={60} height={60} />
-              <p className="text-[24px] font-bold">Log Out</p>
-              <p className="text-[#4A4A4A] pb-8">
-                Are you sure you want to log out?
-              </p>
-              <section className="flex flex-col gap-2 w-full">
-                <button onClick={() => setIsClicked(false)} className=" bg-[#FF6665] rounded-xl py-3 text-white font-semibold hover:cursor-pointer">
-                  Cancel
-                </button>
-                <button onClick={handleLogout} className="bg-[#FFF3F3] rounded-xl py-3  font-semibold hover:cursor-pointer">
-                  Log Out
-                </button>
-              </section>
-            </section>
-          </div>
-        </section>
-      )}
 
       <div className="pb-5">
         <p className="text-[18px] md:text-[24px] font-bold">Personal Information</p>

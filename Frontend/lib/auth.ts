@@ -80,7 +80,7 @@ export const handleSignin = async (
     } catch {}
 
     // STEP 3.1: Verify backend profile really exists and is active
-    const me = await fetch(`${CORE_BASE}/api/user/me`, {
+    const me = await fetch(`/api/core/user/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -161,7 +161,7 @@ export const handleGoogleSignup = async (
 
     const token = await user.getIdToken();
 
-  await fetch(`${CORE_BASE}/api/user/sync-profile`, {
+  await fetch(`/api/core/user/sync-profile`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -234,7 +234,7 @@ export const handleCreateAccount = async (
 
     // STEP 3: Send Firebase token + profile info to backend
     const backendRes = await fetch(
-      `${CORE_BASE}/api/user/sync-profile`,
+      `/api/core/user/sync-profile`,
       {
         method: "POST",
         headers: {
@@ -289,7 +289,7 @@ export const handleCreateAccount = async (
 
     // STEP 5.2: Best-effort ensure backend full_name is correct (in case sync-profile ignored it)
     try {
-      await fetch(`${CORE_BASE}/api/user/me`, {
+      await fetch(`/api/core/user/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -303,7 +303,7 @@ export const handleCreateAccount = async (
 
     // STEP 5.3: Obtain backend session token so ProtectedLayout works after reload
     try {
-      const backendLogin = await fetch(`${CORE_BASE}/api/auth/login`, {
+      const backendLogin = await fetch(`/api/core/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

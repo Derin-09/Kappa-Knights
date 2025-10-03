@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
+import { CORE_BASE } from "@/lib/config";
 
 type Journal = {
   content: string;

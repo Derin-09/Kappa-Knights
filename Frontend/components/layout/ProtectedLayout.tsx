@@ -14,7 +14,7 @@ const getCurrentUser = async (
   router: AppRouterInstance
 ): Promise<UserProfile | null> => {
   try {
-    const res = await fetch(`${CORE_BASE}/api/user/me`, {
+    const res = await fetch(`/api/core/user/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

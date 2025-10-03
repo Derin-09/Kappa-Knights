@@ -57,11 +57,11 @@ const Performance = () => {
       
 const Details = [
     {
-        title: 'Skills Completed',
+        title: 'Skills Enrolled',
         icon: '/dashboard/insights/skillsCompleted.png',
         num: 0,
         numText: '',
-        text: 'Total Unique Skills mastered'
+        text: 'Total Unique Skills enrolled'
     },
     {
         title: 'Active Days',
