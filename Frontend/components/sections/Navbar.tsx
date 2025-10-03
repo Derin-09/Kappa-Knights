@@ -43,7 +43,7 @@ const mobileNavItems = [
   },
   {
     text: "Insights",
-    logo: "/dashboard/insightswhite.png",
+    logo: "/dashboard/insightsWhite.png",
     altText: "Insights",
     link: "/insights",
   },
@@ -260,9 +260,10 @@ const res = await fetch(`${CORE_BASE}/api/user/me`, {
                       <div className="flex  gap-3 items-center justify-cente ">
                         <Image
                           src={`${item.logo}`}
-                          width={32}
-                          height={32}
+                          width={50}
+                          height={50}
                           alt={item.altText}
+                          className="w-6 h-6"
                         />
                         <p className="text-[24px] ">{item.text}</p>
                       </div>
