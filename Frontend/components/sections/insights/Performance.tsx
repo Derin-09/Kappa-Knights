@@ -4,11 +4,14 @@ import React, { useCallback, useEffect } from 'react'
 import PerformanceCard from './ui/PerformanceCard'
 import { useUserStore } from '@/state/store';
 import { JournalEntry } from '@/types/journal';
+import { useUserProfileStore } from '@/state/user';
 import { CORE_BASE } from '@/lib/config';
 
 
 const Performance = () => {
      const {daysActive, setDaysActive, avgMood, setAvgMood} = useUserStore()
+     const profile = useUserProfileStore((s) => s.profile)
+     const [enrolledCount, setEnrolledCount] = React.useState(0)
     
       const fetchProgress = useCallback(async () => {
         try {
@@ -41,10 +44,36 @@ const Performance = () => {
           console.error("progress fetch error", err);
         }
       }, [setDaysActive, setAvgMood]);
+
+      const fetchEnrollmentsCount = useCallback(async () => {
+        try {
+          const res = await fetch('https://nuroki-backend.onrender.com/enrollments/', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            cache: 'no-store',
+          })
+          if (!res.ok) return
+          const raw: unknown = await res.json()
+          const pickArray = (v: unknown): unknown[] => {
+            if (Array.isArray(v)) return v
+            if (typeof v === 'object' && v !== null) {
+              const o = v as Record<string, unknown>
+              if (Array.isArray(o.results)) return o.results
+              if (Array.isArray(o.courses)) return o.courses
+            }
+            return []
+          }
+          const arr = pickArray(raw) as { user?: string | number }[]
+          const uid = profile?.user_id
+          const count = uid == null ? arr.length : arr.filter(e => String(e.user) === String(uid)).length
+          setEnrolledCount(count)
+        } catch {}
+      }, [profile?.user_id])
     
       useEffect(() => {
         fetchProgress();
-      }, [fetchProgress]);
+        fetchEnrollmentsCount();
+      }, [fetchProgress, fetchEnrollmentsCount]);
     
       // Refresh progress immediately after a mood/journal is logged
       useEffect(() => {
@@ -59,7 +88,7 @@ const Details = [
     {
         title: 'Skills Enrolled',
         icon: '/dashboard/insights/skillsCompleted.png',
-        num: 0,
+        num: enrolledCount,
         numText: '',
         text: 'Total Unique Skills enrolled'
     },

@@ -39,7 +39,7 @@ const AccountSec = () => {
     }
 
     try {
-      const res = await fetch(`/api/core/user/p`, {
+const res = await fetch(`${CORE_BASE}/api/user/p`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

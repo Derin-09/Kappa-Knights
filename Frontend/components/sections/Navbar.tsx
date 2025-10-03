@@ -88,7 +88,7 @@ const Navbar = () => {
       if (!token) return;
 
       try {
-        const res = await fetch(`/api/core/user/me`, {
+const res = await fetch(`${CORE_BASE}/api/user/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) return;

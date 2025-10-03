@@ -37,7 +37,7 @@ const PersonalInfo = () => {
     if (!token) return;
 
     try {
-      const res = await fetch(`http://${CORE_BASE}/api/user/me`, {
+      const res = await fetch(`${CORE_BASE}/api/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) return;
@@ -93,7 +93,7 @@ const PersonalInfo = () => {
         if (iso) payload.date_of_birth = iso
         if (profilePic) payload.profile_picture_url = profilePic
 
-      const res = await fetch(`https://${CORE_BASE}/api/user/me`, {
+      const res = await fetch(`${CORE_BASE}/api/user/me`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -114,7 +114,7 @@ const PersonalInfo = () => {
 
         // Re-fetch authoritative profile from backend to ensure email truly changed
         try {
-          const verify = await fetch(`https://${CORE_BASE}/api/user/me`, {
+          const verify = await fetch(`${CORE_BASE}/api/user/me`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,

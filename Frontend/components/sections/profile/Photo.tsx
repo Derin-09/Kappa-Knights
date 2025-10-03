@@ -30,7 +30,7 @@ const Photo = () => {
       const token = localStorage.getItem("token");
 
       try {
-        const res = await fetch(`/api/core/user/me`, {
+const res = await fetch(`${CORE_BASE}/api/user/me`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,

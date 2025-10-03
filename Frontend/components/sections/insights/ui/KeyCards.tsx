@@ -11,7 +11,7 @@ type KeyDetailType = {
 
 const KeyCard = ({props}: {props: KeyDetailType}) => {
   return (
-    <div className={` rounded-2xl  space-y-3 bg-[${props.colour}]`}>
+    <div className={`rounded-2xl space-y-3`} style={{ backgroundColor: props.colour }}>
         <div className='flex gap-3 items-center ml-2 border-y border-r border-[#CCCCCC]/50 rounded-2xl rounded-l-2xl p-5 bg-white'>
             <Image src={props.icon} width={40} height={40}  alt=''/>
             <div>
