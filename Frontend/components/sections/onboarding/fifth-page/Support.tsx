@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useOnboardingStore } from "@/state/useOnboardingData";
 import { getToken } from "@/lib/token";
 import { updateUserOnboardingStatus } from "@/lib/auth";
+import { CORE_BASE } from "@/lib/config";
 
 const options = [
   "I prefer calm reminders and gentle nudges",
@@ -65,7 +66,7 @@ function Support() {
 
     try {
       const res = await fetch(
-        "http://34.228.198.154/api/user/complete-onboarding",
+        `http://${CORE_BASE}/api/user/complete-onboarding`,
         {
           method: "POST",
           headers: {

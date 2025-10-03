@@ -47,7 +47,7 @@ const AllSet = () => {
           </p>
           <div
             onClick={handleRoute}
-            className="hover:cursor-pointer  absolute  z-10 right-6 left-6 md:mx-100"
+            className="hover:cursor-pointer  absolute  z-10 right-6 left-6 lg:mx-100 md:mx-20"
           >
             <AuthButton
               text="Go to Dashboard"
