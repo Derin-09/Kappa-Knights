@@ -49,7 +49,7 @@ const Recent = () => {
   const fetchJournal = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://34.228.198.154/journal", {
+      const res = await fetch(`${CORE_BASE}/journal`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

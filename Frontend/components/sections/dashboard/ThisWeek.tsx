@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
+import { CORE_BASE } from "@/lib/config";
 
 // weekday order Mon–Sun
 const weekOrder = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -49,7 +50,7 @@ const ThisWeek = () => {
   const fetchMoods = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://34.228.198.154/journal/", {
+      const res = await fetch(`${CORE_BASE}/journal/`, {
         method: "GET",
         cache: 'no-store',
         headers: {

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useUserStore } from "@/state/store"
 import { useUserProfileStore } from "@/state/user"
 import { useRouter } from "next/navigation"
+import { CORE_BASE } from "@/lib/config"
 
 const CLOUD_NAME = "dexchhhbs" 
 const UPLOAD_PRESET = "nextjs_profile_upload" 
@@ -29,7 +30,7 @@ const Photo = () => {
       const token = localStorage.getItem("token");
 
       try {
-        const res = await fetch("http://34.228.198.154/api/user/me", {
+        const res = await fetch(`${CORE_BASE}/api/user/me`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,

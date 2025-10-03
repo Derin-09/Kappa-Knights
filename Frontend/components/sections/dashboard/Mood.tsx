@@ -13,6 +13,7 @@ import FirstName from "@/components/common/names/FirstName";
 import { useUserStore } from "@/state/store";
 import Link from "next/link";
 import { X } from "lucide-react";
+import { CORE_BASE } from "@/lib/config";
 
 const moods = [
   {
@@ -75,7 +76,7 @@ function Mood() {
         return;
       }
       console.log(token);
-      const res = await fetch("http://34.228.198.154/journal/", {
+      const res = await fetch(`${CORE_BASE}/journal/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

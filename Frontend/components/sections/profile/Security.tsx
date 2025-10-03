@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { auth, db } from '@/lib/firebase'
 import { deleteUser } from 'firebase/auth'
 import { deleteDoc, doc } from 'firebase/firestore'
+import { CORE_BASE } from '@/lib/config'
 
 const Security = () => {
   const [isRouting, setIsRouting] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const Security = () => {
   const handleDisable = async() => {
     const token = localStorage.getItem('token')
     try {
-      await fetch('http://34.228.198.154/api/user/disable-me', {
+      await fetch(`${CORE_BASE}/api/user/disable-me`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +32,7 @@ const Security = () => {
     const token = localStorage.getItem('token')
     try {
       
-      await fetch('http://34.228.198.154/api/user/me', {
+      await fetch(`${CORE_BASE}/api/user/me`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

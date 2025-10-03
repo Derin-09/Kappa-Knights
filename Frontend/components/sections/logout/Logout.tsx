@@ -4,13 +4,14 @@ import Image from "next/image";
 import LogOut from "@/public/dashboard/logOutBig.png";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { CORE_BASE } from '@/lib/config';
 
 const Logout = () => {
     const router = useRouter()
     const handleLogout = async() => {
       const token = localStorage.getItem("token");
       try {
-        await fetch("http://34.228.198.154/api/user/logout", {
+        await fetch(`${CORE_BASE}/api/user/logout`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

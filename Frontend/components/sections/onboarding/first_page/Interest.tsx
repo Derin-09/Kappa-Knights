@@ -16,6 +16,7 @@ import Loader from "@/components/common/loader/Loader";
 import { useRouter } from "next/navigation";
 import { getCurrentUserFromFirestore } from "@/lib/auth";
 import { getFirebaseErrorMessage } from "@/lib/firebaseErrorHandler";
+import { CORE_BASE } from "@/lib/config";
 import { useUserStore } from "@/state/store";
 import { useOnboardingStore } from "@/state/useOnboardingData";
 import { clearNonAuthStorage } from "@/lib/token";
@@ -185,7 +186,7 @@ function Interest() {
         console.error('No token found in Interest page!');
         return;
       }
-      const res = await fetch("http://34.228.198.154/api/user/me", {
+      const res = await fetch(`${CORE_BASE}/api/user/me`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

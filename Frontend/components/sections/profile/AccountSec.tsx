@@ -2,6 +2,7 @@
 
 import React, { useState } from "react"
 import { toast } from "sonner"
+import { CORE_BASE } from "@/lib/config"
 
 const AccountSec = () => {
   const [isEditing, setIsEditing] = useState(false)
@@ -38,7 +39,7 @@ const AccountSec = () => {
     }
 
     try {
-      const res = await fetch("http://34.228.198.154/api/user/p", {
+      const res = await fetch(`${CORE_BASE}/api/user/p`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

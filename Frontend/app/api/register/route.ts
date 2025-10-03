@@ -1,12 +1,13 @@
 // app/api/register/route.ts
 import { NextResponse } from "next/server";
+import { CORE_BASE } from "@/lib/config";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
 
     // forward to your backend
-    const backendRes = await fetch("http://34.228.198.154/api/auth/register", {
+    const backendRes = await fetch(`${CORE_BASE}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

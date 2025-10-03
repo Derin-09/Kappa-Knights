@@ -22,6 +22,7 @@ import mood from "@/components/common/graphs/testMood.json";
 import { useRouter } from "next/navigation";
 import { JournalEntry } from "@/types/journal";
 import Loader from "@/components/common/loader/Loader";
+import { CORE_BASE } from "@/lib/config";
 
 const Details = [
   {
@@ -49,7 +50,7 @@ const moodLabelsMap: Record<string, number> = {
 
 const getSentimentScore = async (token: string) => {
   try {
-    const res = await fetch("http://34.228.198.154/journal/", {
+    const res = await fetch(`${CORE_BASE}/journal/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import React, { useCallback, useEffect } from 'react'
 import PerformanceCard from './ui/PerformanceCard'
 import { useUserStore } from '@/state/store';
 import { JournalEntry } from '@/types/journal';
+import { CORE_BASE } from '@/lib/config';
 
 
 const Performance = () => {
@@ -14,7 +15,7 @@ const Performance = () => {
           const token = localStorage.getItem("token");
           if (!token) return;
     
-          const res = await fetch("http://34.228.198.154/journal/",{
+          const res = await fetch(`${CORE_BASE}/journal/`,{
             headers: { Authorization: `Bearer ${token}` },
             cache: 'no-store'
           });

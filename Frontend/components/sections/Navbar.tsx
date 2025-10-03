@@ -14,6 +14,7 @@ import { useUserCourses, useUserStore } from "@/state/store";
 import { useUserProfileStore } from "@/state/user";
 import { SearchIcon } from "lucide-react";
 import { useOnboardingStore } from "@/state/useOnboardingData";
+import { CORE_BASE } from "@/lib/config";
 
 const mobileNavItems = [
   {
@@ -87,7 +88,7 @@ const Navbar = () => {
       if (!token) return;
 
       try {
-        const res = await fetch("http://34.228.198.154/api/user/me", {
+        const res = await fetch(`${CORE_BASE}/api/user/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) return;
