@@ -16,6 +16,7 @@ import { useUserStore } from "@/state/store";
 import { useUserProfileStore } from "@/state/user";
 import { useOnboardingStore } from "@/state/useOnboardingData";
 import { clearNonAuthStorage } from "@/lib/token";
+import { CORE_BASE } from "@/lib/config";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 interface FirestoreUser {
   email: string;
