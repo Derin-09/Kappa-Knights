@@ -66,7 +66,7 @@ function Support() {
 
     try {
       const res = await fetch(
-        `http://${CORE_BASE}/api/user/complete-onboarding`,
+        `${CORE_BASE}/api/user/complete-onboarding`,
         {
           method: "POST",
           headers: {
