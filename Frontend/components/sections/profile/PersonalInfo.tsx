@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
+// import { useUserProfileStore } from "@/state/user";
+import { CORE_BASE } from "@/lib/config";
 const months = [
   "January","February","March","April","May","June",
   "July","August","September","October","November","December",
@@ -92,7 +93,7 @@ const PersonalInfo = () => {
         if (iso) payload.date_of_birth = iso
         if (profilePic) payload.profile_picture_url = profilePic
 
-        const res = await fetch("http://34.228.198.154/api/user/me", {
+      const res = await fetch(`${CORE_BASE}/api/user/me`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -113,7 +114,7 @@ const PersonalInfo = () => {
 
         // Re-fetch authoritative profile from backend to ensure email truly changed
         try {
-          const verify = await fetch("http://34.228.198.154/api/user/me", {
+          const verify = await fetch(`${CORE_BASE}/api/user/me`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -153,7 +154,7 @@ const PersonalInfo = () => {
   const handleLogout = async() => {
       const token = localStorage.getItem("token");
       try {
-        await fetch("http://34.228.198.154/api/user/logout", {
+        await fetch(`${CORE_BASE}/api/user/logout`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

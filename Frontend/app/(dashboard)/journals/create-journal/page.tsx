@@ -8,6 +8,7 @@ import AuthButton from "@/components/common/button/Button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import FirstName from "@/components/common/names/FirstName";
+import { CORE_BASE } from "@/lib/config";
 // import { auth } from "@/lib/firebase";
 // import { apiFetch } from "@/lib/apiClient";
 import { useUserStore } from "@/state/store";
@@ -75,7 +76,7 @@ function CreateJournalPage() {
         return;
       }
       console.log(token);
-      const res = await fetch("http://34.228.198.154/journal/", {
+      const res = await fetch(`${CORE_BASE}/journal/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

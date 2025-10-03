@@ -5,6 +5,7 @@ import { useUserProfileStore } from "@/state/user";
 import { UserProfile } from "@/types/user";
 import Loader from "@/components/common/loader/Loader";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { CORE_BASE } from "@/lib/config";
 
 type Props = { children: ReactNode };
 
@@ -13,7 +14,7 @@ const getCurrentUser = async (
   router: AppRouterInstance
 ): Promise<UserProfile | null> => {
   try {
-    const res = await fetch("http://34.228.198.154/api/user/me", {
+    const res = await fetch(`${CORE_BASE}/api/user/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

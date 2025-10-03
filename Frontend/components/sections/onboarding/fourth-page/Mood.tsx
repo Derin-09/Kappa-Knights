@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { auth } from "@/lib/firebase";
 import { useOnboardingStore } from "@/state/useOnboardingData";
+import { CORE_BASE } from "@/lib/config";
 
 const moods = [
   {
@@ -68,7 +69,7 @@ function Mood() {
       if (!token) {
         toast.error('No token found. Please sign in again.');
       } else {
-        const res = await fetch('http://34.228.198.154/journal/', {
+        const res = await fetch(`${CORE_BASE}/journal/`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Side from "@/public/dashboard/sideArrow.png";
 import { useUserStore } from "@/state/store";
 import { useUserProfileStore } from "@/state/user";
+import { CORE_BASE } from "@/lib/config";
 
 type JournalEntry = {
   created_at: string;        
@@ -23,7 +24,7 @@ const Progress = () => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const res = await fetch("http://34.228.198.154/journal/",{
+      const res = await fetch(`${CORE_BASE}/journal/`,{
         headers: { Authorization: `Bearer ${token}` },
         cache: 'no-store'
       });

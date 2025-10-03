@@ -1,7 +1,8 @@
 // apiClient.ts
 import { getToken, getRefreshToken, saveTokens, clearTokens } from "./token";
+import { CORE_BASE } from "./config";
 
-const BASE_URL = "http://34.228.198.154/api";
+const BASE_URL = `${CORE_BASE}/api`;
 
 export async function apiFetch<T>(
   endpoint: string,

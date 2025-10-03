@@ -11,7 +11,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Plus, PlusCircle } from "lucide-react";
 
-const API_BASE = "http://34.228.198.154";
+import { CORE_BASE } from "@/lib/config";
+const API_BASE = CORE_BASE;
 
 const moods = [
   "motivated",

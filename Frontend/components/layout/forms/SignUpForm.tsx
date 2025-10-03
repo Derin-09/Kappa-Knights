@@ -62,21 +62,6 @@ function SignUpForm({ setIsVerifying }: props) {
             Fill in the field below to register your account
           </p>
         </div>
-        {/* <form
-          className="w-full flex flex-col gap-6"
-          onSubmit={(e) =>
-            handleCreateAccount(
-              e,
-              email,
-              password,
-              name, // this is fullName from your zustand store
-              router,
-              setError,
-              setEmailSigningIn,
-              setIsVerifying
-            )
-          }
-        > */}
 
           <form
           className="w-full  flex flex-col gap-6"

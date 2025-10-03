@@ -74,6 +74,7 @@ const Login = ({ isDone = () => {} }: prop) => {
           width={900}
           alt=""
           className="w-full h-full object-cover scale-110"
+          priority
         />
       </section>
       <section className="xl:ml-[45%] relative w-full">
